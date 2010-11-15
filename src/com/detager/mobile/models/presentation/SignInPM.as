@@ -39,8 +39,8 @@ package com.detager.mobile.models.presentation
 		{
 			userService = ServiceLocator.instance.userService;
 			
-			username = "pwalczyszyn";
-			password = "password";
+//			username = "pwalczyszyn";
+//			password = "password";
 		}
 		
 		public function btnSignIn_clickHandler():void

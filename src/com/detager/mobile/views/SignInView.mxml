@@ -15,9 +15,11 @@
 		<s:FormItem label="Password:">
 			<s:TextInput id="txtPassword" width="280" text="@{model.password}" displayAsPassword="true"/>
 		</s:FormItem>
+		<!--
 		<s:FormItem>
 			<s:CheckBox id="chkRememberMe" selected="@{model.rememberMe}" label="Remember me" />
 		</s:FormItem>
+		-->
 		<s:FormItem>
 			<s:Button id="btnSignIn" label="Sign In" click="model.btnSignIn_clickHandler()" />
 		</s:FormItem>
