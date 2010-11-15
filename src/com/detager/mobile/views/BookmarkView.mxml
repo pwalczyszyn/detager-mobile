@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" title="{data.title}"
+		dataChange="view_dataChangeHandler(event)" xmlns:mx="library://ns.adobe.com/flex/mx">
+	
+	<fx:Script>
+		<![CDATA[
+			import com.detager.models.domain.Bookmark;
+			import com.detager.models.domain.Tag;
+			
+			import mx.events.FlexEvent;
+			
+			[Bindable]
+			private var tags:String;
+			
+			protected function view_dataChangeHandler(event:FlexEvent):void
+			{
+				tags = "";
+				for each(var tag:Tag in Bookmark(data).tags)
+				{
+					tags += tag.name + ", ";
+				}
+			}
+
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<mx:DateFormatter id="dateFormatter" formatString="EEE DD/MM H:NN" />
+	</fx:Declarations>
+	
+	<s:VGroup top="40" bottom="90" left="20" right="20" gap="50">
+		
+		<s:Label width="100%" text="Url: {data.url}"/>
+		
+		<s:Label width="100%" text="Description: {data.description ? data.description : ''}"/>
+		
+		<s:Label width="100%" text="Tags: {tags}" />
+		
+		<s:Label width="100%" text="Author: {data.ownerUsername}"/>
+		
+		<s:Label width="100%" text="Entry date: {dateFormatter.format(data.entryDate)}"/>
+		
+	</s:VGroup>
+	
+	<s:Button right="20" bottom="20" label="Open >" click="navigateToURL(new URLRequest(data.url))" />
+</s:View>

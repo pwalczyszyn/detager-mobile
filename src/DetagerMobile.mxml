@@ -5,19 +5,19 @@
 					 creationComplete="mobileapplication_creationCompleteHandler(event)">
 	<fx:Script>
 		<![CDATA[
+			import com.detager.mobile.events.ChangeViewEvent;
 			import com.detager.mobile.events.GlobalDispatcher;
-			import com.detager.mobile.events.SwitchViewEvent;
 			
 			import mx.events.FlexEvent;
 
 			protected function mobileapplication_creationCompleteHandler(event:FlexEvent):void
 			{
-				GlobalDispatcher.addEventListener(SwitchViewEvent.SWITCH_VIEW, switchView_eventHandler);
+				GlobalDispatcher.addEventListener(ChangeViewEvent.CHANGE_VIEW, switchView_eventHandler);
 			}
 
-			protected function switchView_eventHandler(event:SwitchViewEvent):void
+			protected function switchView_eventHandler(event:ChangeViewEvent):void
 			{
-				navigator.pushView(event.viewClass);
+				navigator.pushView(event.viewClass, event.data);
 			}
 
 		]]>

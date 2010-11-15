@@ -1,7 +1,7 @@
 package com.detager.mobile.models.presentation
 {
+	import com.detager.mobile.events.ChangeViewEvent;
 	import com.detager.mobile.events.GlobalDispatcher;
-	import com.detager.mobile.events.SwitchViewEvent;
 	import com.detager.mobile.services.IUserService;
 	import com.detager.mobile.services.ServiceHelper;
 	import com.detager.mobile.services.ServiceLocator;
@@ -17,8 +17,11 @@ package com.detager.mobile.models.presentation
 	{
 		
 		[Bindable]
-		public var user:User;
-		
+		public var username:String;
+
+		[Bindable]
+		public var password:String;
+
 		[Bindable]
 		public var rememberMe:Boolean = false;
 		
@@ -29,20 +32,25 @@ package com.detager.mobile.models.presentation
 		
 		public function SignInPM()
 		{
+			init();
+		}
+		
+		private function init():void
+		{
 			userService = ServiceLocator.instance.userService;
-			user = new User();
-			user.username = "pwalczyszyn";
-			user.password = "password";
+			
+			username = "pwalczyszyn";
+			password = "password";
 		}
 		
 		public function btnSignIn_clickHandler():void
 		{
-			ServiceHelper.call(userService.signIn(user.username, user.password), signIn_resultHandler, signIn_faultHandler);
+			ServiceHelper.call(userService.signIn(username, password), signIn_resultHandler, signIn_faultHandler);
 		}
 
 		private function signIn_resultHandler(event:ResultEvent):void
 		{
-			GlobalDispatcher.dispatchEvent(new SwitchViewEvent(SwitchViewEvent.SWITCH_VIEW, HomeView));
+			GlobalDispatcher.dispatchEvent(new ChangeViewEvent(ChangeViewEvent.CHANGE_VIEW, HomeView));
 		}
 		
 		private function signIn_faultHandler(event:FaultEvent):void
