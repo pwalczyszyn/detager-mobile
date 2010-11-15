@@ -1,0 +1,37 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+
+
+global
+{
+	content-background-color: #ebebeb;
+	chrome-color: #acacac;
+	symbol-color: #1c232e;
+	color: #1c232e;
+	selection-color: #fbd13f;
+	font-family: Sansation;
+	font-size: 12px;
+	font-lookup: "embeddedCFF";
+}
+
+s|MobileApplication
+{
+	background-color: #ebebeb;
+}
+
+@font-face
+{
+	fontFamily: Sansation;
+	src: url("/assets/fonts/Sansation_Regular.ttf");
+	font-weight: normal;
+	embedAsCff: true;
+}
+
+@font-face
+{
+	fontFamily: Sansation_Bold;
+	src: url("/assets/fonts/Sansation_Bold.ttf");
+	font-weight: bold;
+	embedAsCFF: true;
+}

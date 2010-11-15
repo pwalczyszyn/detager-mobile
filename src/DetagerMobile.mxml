@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:MobileApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
+					 xmlns:s="library://ns.adobe.com/flex/spark" 
+					 firstView="com.detager.mobile.views.SignInView"
+					 creationComplete="mobileapplication_creationCompleteHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import com.detager.mobile.events.GlobalDispatcher;
+			import com.detager.mobile.events.SwitchViewEvent;
+			
+			import mx.events.FlexEvent;
+
+			protected function mobileapplication_creationCompleteHandler(event:FlexEvent):void
+			{
+				GlobalDispatcher.addEventListener(SwitchViewEvent.SWITCH_VIEW, switchView_eventHandler);
+			}
+
+			protected function switchView_eventHandler(event:SwitchViewEvent):void
+			{
+				navigator.pushView(event.viewClass);
+			}
+
+		]]>
+	</fx:Script>
+
+	<!--
+	<fx:Style source="DetagerMobile.css"/>
+	-->
+		
+	<fx:Declarations>
+	</fx:Declarations>
+	
+</s:MobileApplication>

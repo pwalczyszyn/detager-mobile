@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" title="detager.com sign in" xmlns:presentation="com.detager.mobile.models.presentation.*">
+		
+	<fx:Declarations>
+		<presentation:SignInPM id="model" />
+	</fx:Declarations>
+	
+	<s:Form left="10" right="10" verticalCenter="0">
+		<s:FormItem label="Username:">
+			<s:TextInput id="txtUsername" width="280" text="@{model.user.username}"/>
+		</s:FormItem>
+		<s:FormItem label="Password:">
+			<s:TextInput id="txtPassword" width="280" text="@{model.user.password}" displayAsPassword="true"/>
+		</s:FormItem>
+		<s:FormItem>
+			<s:CheckBox id="chkRememberMe" selected="@{model.rememberMe}" label="Remember me" />
+		</s:FormItem>
+		<s:FormItem>
+			<s:Button id="btnSignIn" label="Sign In" click="model.btnSignIn_clickHandler()" />
+		</s:FormItem>
+	</s:Form>
+	
+</s:View>
