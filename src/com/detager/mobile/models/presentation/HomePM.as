@@ -1,9 +1,6 @@
 package com.detager.mobile.models.presentation
 {
 	import com.detager.mobile.events.ChangeViewEvent;
-	import com.detager.mobile.services.IBookmarkService;
-	import com.detager.mobile.services.ServiceHelper;
-	import com.detager.mobile.services.ServiceLocator;
 	import com.detager.mobile.views.BookmarkView;
 	import com.detager.models.domain.Bookmark;
 	
@@ -13,8 +10,6 @@ package com.detager.mobile.models.presentation
 
 	public class HomePM
 	{
-		
-		private var bookmarkService:IBookmarkService;
 		
 		private var since:Date;
 		
@@ -27,7 +22,6 @@ package com.detager.mobile.models.presentation
 		
 		public function HomePM()
 		{
-			bookmarkService = ServiceLocator.instance.bookmarkService;
 		}
 
 		private var _showAll:Boolean = true;
@@ -59,8 +53,8 @@ package com.detager.mobile.models.presentation
 
 		public function loadBookmarks():void
 		{
-			ServiceHelper.call(bookmarkService.loadLatest(since), loadLatest_resultHandler, load_faultHandler);
-			ServiceHelper.call(bookmarkService.loadUserBookmarks(), loadUserBookmarks_resultHandler, load_faultHandler);
+			remoteService.call("bookmarksService", "loadLatest", [since], loadLatest_resultHandler, load_faultHandler);
+			remoteService.call("bookmarksService", "loadUserBookmarks", null, loadUserBookmarks_resultHandler, load_faultHandler);
 		}
 		
 		private function loadUserBookmarks_resultHandler(event:ResultEvent):void

@@ -3,15 +3,17 @@
 					 xmlns:s="library://ns.adobe.com/flex/spark" 
 					 firstView="com.detager.mobile.views.SignInView"
 					 creationComplete="mobileapplication_creationCompleteHandler(event)">
+	
 	<fx:Script>
 		<![CDATA[
+			import com.detager.mobile.configs.RemoteServiceConfig;
 			import com.detager.mobile.events.ChangeViewEvent;
-			import com.detager.mobile.events.GlobalDispatcher;
 			
 			import mx.events.FlexEvent;
 
 			protected function mobileapplication_creationCompleteHandler(event:FlexEvent):void
 			{
+				remoteService.config = RemoteServiceConfig;
 				eventDispatcher.addEventListener(ChangeViewEvent.CHANGE_VIEW, switchView_eventHandler);
 			}
 
@@ -23,11 +25,4 @@
 		]]>
 	</fx:Script>
 
-	<!--
-	<fx:Style source="DetagerMobile.css"/>
-	-->
-		
-	<fx:Declarations>
-	</fx:Declarations>
-	
 </s:MobileApplication>
