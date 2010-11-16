@@ -12,7 +12,7 @@
 
 			protected function mobileapplication_creationCompleteHandler(event:FlexEvent):void
 			{
-				GlobalDispatcher.addEventListener(ChangeViewEvent.CHANGE_VIEW, switchView_eventHandler);
+				eventDispatcher.addEventListener(ChangeViewEvent.CHANGE_VIEW, switchView_eventHandler);
 			}
 
 			protected function switchView_eventHandler(event:ChangeViewEvent):void

@@ -41,6 +41,7 @@ package com.detager.mobile.models.presentation
 			
 //			username = "pwalczyszyn";
 //			password = "password";
+			
 		}
 		
 		public function btnSignIn_clickHandler():void
@@ -50,7 +51,7 @@ package com.detager.mobile.models.presentation
 
 		private function signIn_resultHandler(event:ResultEvent):void
 		{
-			GlobalDispatcher.dispatchEvent(new ChangeViewEvent(ChangeViewEvent.CHANGE_VIEW, HomeView));
+			eventDispatcher.dispatchEvent(new ChangeViewEvent(ChangeViewEvent.CHANGE_VIEW, HomeView));
 		}
 		
 		private function signIn_faultHandler(event:FaultEvent):void

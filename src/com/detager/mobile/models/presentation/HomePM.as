@@ -1,7 +1,6 @@
 package com.detager.mobile.models.presentation
 {
 	import com.detager.mobile.events.ChangeViewEvent;
-	import com.detager.mobile.events.GlobalDispatcher;
 	import com.detager.mobile.services.IBookmarkService;
 	import com.detager.mobile.services.ServiceHelper;
 	import com.detager.mobile.services.ServiceLocator;
@@ -55,7 +54,7 @@ package com.detager.mobile.models.presentation
 		
 		public function lstBookmarks_changeHandler(bookmark:Bookmark):void
 		{
-			GlobalDispatcher.dispatchEvent(new ChangeViewEvent(ChangeViewEvent.CHANGE_VIEW, BookmarkView, bookmark)); 
+			eventDispatcher.dispatchEvent(new ChangeViewEvent(ChangeViewEvent.CHANGE_VIEW, BookmarkView, bookmark)); 
 		}
 
 		public function loadBookmarks():void
