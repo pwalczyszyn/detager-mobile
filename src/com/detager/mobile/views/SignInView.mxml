@@ -2,27 +2,41 @@
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:presentation="com.detager.mobile.models.presentation.*"
-		title="detager.com sign in">
+		title="detager.com sign in"
+		currentState="{model.viewState}">
 		
+	<s:actionContent>
+		<s:Button id="btnSignIn" label="Sign In" click="model.btnSignIn_clickHandler()" />
+	</s:actionContent>
+	
 	<fx:Declarations>
 		<presentation:SignInPM id="model" />
 	</fx:Declarations>
 	
-	<s:Form left="10" right="10" verticalCenter="0">
+	<s:states>
+		<s:State name="FORM_VIEW" />
+		<s:State name="PROGRESS_VIEW" />
+	</s:states>
+	
+	<s:Label text="Connecting..." includeIn="PROGRESS_VIEW" verticalCenter="0" horizontalCenter="0" />
+	
+	<s:Form includeIn="FORM_VIEW" left="10" right="10" verticalCenter="-130" defaultButton="{btnSignIn}">
 		<s:FormItem label="Username:">
 			<s:TextInput id="txtUsername" width="280" text="@{model.username}"/>
 		</s:FormItem>
 		<s:FormItem label="Password:">
 			<s:TextInput id="txtPassword" width="280" text="@{model.password}" displayAsPassword="true"/>
 		</s:FormItem>
-		<!--
 		<s:FormItem>
 			<s:CheckBox id="chkRememberMe" selected="@{model.rememberMe}" label="Remember me" />
 		</s:FormItem>
-		-->
-		<s:FormItem>
-			<s:Button id="btnSignIn" label="Sign In" click="model.btnSignIn_clickHandler()" />
-		</s:FormItem>
 	</s:Form>
 	
+	<s:VGroup includeIn="FORM_VIEW" bottom="100" gap="30" horizontalAlign="center" horizontalCenter="0">
+		<s:Label text="Click here to register" click="navigateToURL(new URLRequest('http://detager.com/register'))"
+				 textDecoration="underline" />
+		<s:Label text="Forgot password?" click="navigateToURL(new URLRequest('http://detager.com/forgotpassword'))"
+				 textDecoration="underline" />
+	</s:VGroup>
+
 </s:View>

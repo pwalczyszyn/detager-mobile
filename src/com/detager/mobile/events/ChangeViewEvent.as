@@ -7,7 +7,9 @@ package com.detager.mobile.events
 	public class ChangeViewEvent extends Event
 	{
 		
-		public static const CHANGE_VIEW:String = "changeView";
+		public static const PUSH_VIEW:String = "pushView";
+		
+		public static const POP_VIEW:String = "popView";
 		
 		public var viewClass:Class;
 		
@@ -15,7 +17,7 @@ package com.detager.mobile.events
 		
 		public var transition:ViewTransition;
 		
-		public function ChangeViewEvent(type:String, viewClass:Class, data:Object = null, transition:ViewTransition = null, bubbles:Boolean=false, cancelable:Boolean=false)
+		public function ChangeViewEvent(type:String, viewClass:Class = null, data:Object = null, transition:ViewTransition = null, bubbles:Boolean=false, cancelable:Boolean=false)
 		{
 			super(type, bubbles, cancelable);
 			this.viewClass = viewClass;

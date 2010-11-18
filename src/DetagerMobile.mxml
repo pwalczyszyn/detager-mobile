@@ -1,28 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:MobileApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
 					 xmlns:s="library://ns.adobe.com/flex/spark" 
+					 xmlns:controllers="com.detager.mobile.controllers.*"
 					 firstView="com.detager.mobile.views.SignInView"
-					 creationComplete="mobileapplication_creationCompleteHandler(event)">
+					 preinitialize="mobileapplication_preinitializeHandler(event)"
+					 creationComplete="mobileapplication_creationCompleteHandler(event)" >
+	
+	<fx:Style source="/DetagerMobile.css" />
+	
+	<s:actionContent />
+	
+	<s:titleContent>
+		<s:BitmapImage source="@Embed(source='/assets/logo.png')" />
+	</s:titleContent>
 	
 	<fx:Script>
 		<![CDATA[
 			import com.detager.mobile.configs.RemoteServiceConfig;
-			import com.detager.mobile.events.ChangeViewEvent;
 			
 			import mx.events.FlexEvent;
 
-			protected function mobileapplication_creationCompleteHandler(event:FlexEvent):void
+			protected function mobileapplication_preinitializeHandler(event:FlexEvent):void
 			{
 				$.services.configure(RemoteServiceConfig);
-				$.addEventListener(ChangeViewEvent.CHANGE_VIEW, switchView_eventHandler);
 			}
 
-			protected function switchView_eventHandler(event:ChangeViewEvent):void
+			protected function mobileapplication_creationCompleteHandler(event:FlexEvent):void
 			{
-				navigator.pushView(event.viewClass, event.data);
+				navigatorController.navigator = navigator;
 			}
-
 		]]>
 	</fx:Script>
 
+	<fx:Declarations>
+		<controllers:NavigatorController id="navigatorController" />
+	</fx:Declarations>
+	
 </s:MobileApplication>

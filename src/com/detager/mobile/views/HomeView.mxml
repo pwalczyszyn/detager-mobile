@@ -4,11 +4,13 @@
 		viewActivate="model.loadBookmarks()">
 	
 	<s:actionContent>
+		<s:Button label="Search" click="$.dispatchEvent(new ChangeViewEvent(ChangeViewEvent.PUSH_VIEW, SearchView))" />
 		<s:Button label="Refresh" click="model.loadBookmarks()" />
 	</s:actionContent>
 	
 	<fx:Script>
 		<![CDATA[
+			import com.detager.mobile.events.ChangeViewEvent;
 			import com.detager.models.domain.Bookmark;
 		]]>
 	</fx:Script>

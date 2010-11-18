@@ -31,7 +31,10 @@
 	
 	<s:VGroup top="40" bottom="90" left="20" right="20" gap="50">
 		
-		<s:Label width="100%" text="Url: {data.url}"/>
+		<s:HGroup width="100%" verticalAlign="middle">
+			<s:Label text="Url:" />
+			<s:Label width="100%" text="{data.url}" textDecoration="underline" click="navigateToURL(new URLRequest(data.url))"/>
+		</s:HGroup>
 		
 		<s:Label width="100%" text="Description: {data.description ? data.description : ''}"/>
 		
@@ -43,5 +46,4 @@
 		
 	</s:VGroup>
 	
-	<s:Button right="20" bottom="20" label="Open >" click="navigateToURL(new URLRequest(data.url))" />
 </s:View>
