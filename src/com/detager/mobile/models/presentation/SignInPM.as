@@ -3,7 +3,6 @@ package com.detager.mobile.models.presentation
 	import com.detager.mobile.events.ChangeViewEvent;
 	import com.detager.mobile.views.HomeView;
 	import com.detager.models.domain.SignInResult;
-	import com.detager.models.domain.User;
 	
 	import flash.events.EventDispatcher;
 	
@@ -33,21 +32,19 @@ package com.detager.mobile.models.presentation
 		
 		private function init():void
 		{
-//			username = "pwalczyszyn";
-//			password = "password";
 		}
 		
 		public function btnSignIn_clickHandler():void
 		{
-			var remoteObject:RemoteObject = $.service.getRemoteObject("usersService");
+			var remoteObject:RemoteObject = $.services.getRemoteObject("usersService");
 			remoteObject.setCredentials(username, password);
-			$.service.executeAsyncToken(remoteObject.signIn(), signIn_resultHandler, signIn_faultHandler);
+			$.services.executeAsyncToken(remoteObject.signIn(), signIn_resultHandler, signIn_faultHandler);
 		}
 
 		private function signIn_resultHandler(event:ResultEvent):void
 		{
 			$.inout("currentUser", SignInResult(event.result).user); 
-			$.dispatch(new ChangeViewEvent(ChangeViewEvent.CHANGE_VIEW, HomeView));
+			$.dispatchEvent(new ChangeViewEvent(ChangeViewEvent.CHANGE_VIEW, HomeView));
 		}
 		
 		private function signIn_faultHandler(event:FaultEvent):void

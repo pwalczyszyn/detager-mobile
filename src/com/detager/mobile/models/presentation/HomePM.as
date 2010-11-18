@@ -48,7 +48,7 @@ package com.detager.mobile.models.presentation
 		
 		public function lstBookmarks_changeHandler(bookmark:Bookmark):void
 		{
-			$.dispatch(new ChangeViewEvent(ChangeViewEvent.CHANGE_VIEW, BookmarkView, bookmark)); 
+			$.dispatchEvent(new ChangeViewEvent(ChangeViewEvent.CHANGE_VIEW, BookmarkView, bookmark)); 
 		}
 
 		public function loadBookmarks():void
