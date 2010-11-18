@@ -39,15 +39,15 @@ package com.detager.mobile.models.presentation
 		
 		public function btnSignIn_clickHandler():void
 		{
-			var remoteObject:RemoteObject = remoteService.getRemoteObject("usersService");
+			var remoteObject:RemoteObject = $.service.getRemoteObject("usersService");
 			remoteObject.setCredentials(username, password);
-			remoteService.callDirectly(remoteObject.signIn(), signIn_resultHandler, signIn_faultHandler);
+			$.service.executeAsyncToken(remoteObject.signIn(), signIn_resultHandler, signIn_faultHandler);
 		}
 
 		private function signIn_resultHandler(event:ResultEvent):void
 		{
-			applicationContext.currentUser = SignInResult(event.result).user; 
-			eventDispatcher.dispatchEvent(new ChangeViewEvent(ChangeViewEvent.CHANGE_VIEW, HomeView));
+			$.inout("currentUser", SignInResult(event.result).user); 
+			$.dispatch(new ChangeViewEvent(ChangeViewEvent.CHANGE_VIEW, HomeView));
 		}
 		
 		private function signIn_faultHandler(event:FaultEvent):void

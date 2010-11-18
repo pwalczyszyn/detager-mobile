@@ -48,13 +48,13 @@ package com.detager.mobile.models.presentation
 		
 		public function lstBookmarks_changeHandler(bookmark:Bookmark):void
 		{
-			eventDispatcher.dispatchEvent(new ChangeViewEvent(ChangeViewEvent.CHANGE_VIEW, BookmarkView, bookmark)); 
+			$.dispatch(new ChangeViewEvent(ChangeViewEvent.CHANGE_VIEW, BookmarkView, bookmark)); 
 		}
 
 		public function loadBookmarks():void
 		{
-			remoteService.call("bookmarksService", "loadLatest", [since], loadLatest_resultHandler, load_faultHandler);
-			remoteService.call("bookmarksService", "loadUserBookmarks", null, loadUserBookmarks_resultHandler, load_faultHandler);
+			$.execute("bookmarksService", "loadLatest", [since], loadLatest_resultHandler, load_faultHandler);
+			$.execute("bookmarksService", "loadUserBookmarks", null, loadUserBookmarks_resultHandler, load_faultHandler);
 		}
 		
 		private function loadUserBookmarks_resultHandler(event:ResultEvent):void

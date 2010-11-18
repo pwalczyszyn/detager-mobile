@@ -8,13 +8,14 @@
 		<![CDATA[
 			import com.detager.mobile.configs.RemoteServiceConfig;
 			import com.detager.mobile.events.ChangeViewEvent;
+			import com.riaspace.un.events.ContextPropertyChangeEvent;
 			
 			import mx.events.FlexEvent;
 
 			protected function mobileapplication_creationCompleteHandler(event:FlexEvent):void
 			{
-				remoteService.config = RemoteServiceConfig;
-				eventDispatcher.addEventListener(ChangeViewEvent.CHANGE_VIEW, switchView_eventHandler);
+				$.service.configure(RemoteServiceConfig);
+				$.listen(ChangeViewEvent.CHANGE_VIEW, switchView_eventHandler);
 			}
 
 			protected function switchView_eventHandler(event:ChangeViewEvent):void
